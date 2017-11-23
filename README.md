@@ -11,7 +11,7 @@ You will need gcc. Then (in the right directory) make:
 - objcopy -O binary aexe.tmp hello.aexe
 
 # Current features
-- printf (to print a char[])
+- <b>printf</b> (to print a char[])
 - fgets (to read a line and return it in a char[])
 - clear (to clear the Aura shell)
 - setcursor (to set the position of the cursor)
