@@ -1,5 +1,5 @@
 asm (".code32\n"
-     "call _main\n"
+     "call _auramain\n"
 	 "ret\n");
 	 
 	static void printf(char *string)
@@ -59,7 +59,7 @@ asm (".code32\n"
                      "int   $0x48\n");
     }
 	
-    int main(void)
+    int auramain(void)
     {
 		char *response = fgets("What is your name: ");
 		printf("Your name is: ");
