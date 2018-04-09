@@ -23,6 +23,7 @@ char *fgets(char *string)
 	char *returned;
 
 	asm volatile ("mov   %%edi, %0\n"
+				 "mov %%edi, 0x00\n"
 				 :
 				 : "r"(returned)
 				 : "edi" , "eax", "memory");
