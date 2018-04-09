@@ -6,15 +6,14 @@ CC		:=	gcc
 OBJCOPY	:=	objcopy
 LD = ld.exe
 OBJS	:=	$(patsubst $(SDIR)/%.c, $(ODIR)/%.o, $(CFILES))
+LOBJS	:=	$(patsubst $(SDIR)/lib/%.c, $(ODIR)/%.o, $(CLIBFILES))
 
 CFLAGS = -std=gnu99 -Os -nostdlib -m32 -ffreestanding
 LDFLAGS =  -Ttext=0x0
 
 TARGET = $(shell basename $(CURDIR)).bin
 
-$(TARGET): $(ODIR) $(OBJS)
-	$(CC) -c $(CFLAGS) -o $(ODIR)/*.o $(CFILES)
-	$(CC) -c $(CFLAGS) -o $(ODIR)/*.o $(CLIBFILES)
+$(TARGET): $(ODIR) $(OBJS) $(LOBJS)
 	$(LD) $(ODIR)/*.o $(SDIR)/linker/aura.ld -o $(ODIR)/program.tmp $(LDFLAGS)
 	$(OBJCOPY) -O binary $(ODIR)/program.tmp $(ODIR)/program.bin
 	rm -f $(ODIR)/program.tmp
