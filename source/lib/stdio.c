@@ -1,6 +1,4 @@
 #include "stdio.h"
-#include "stdarg.h"
-#include "stdlib.h"
 
 int printf(const char *string, ...)
 {
@@ -11,4 +9,23 @@ int printf(const char *string, ...)
 				 : "r"(string)
 				 : "esi" , "eax", "memory");
 	return 0;
+}
+
+char *fgets(char *string)
+{
+	asm volatile ("mov   $0x02, %%eax\n" //Print function
+				 "mov   %0, %%esi\n"
+				 "int   $0x48\n"
+				 :
+				 : "r"(string)
+				 : "esi" , "eax", "memory");
+
+	char *returned;
+
+	asm volatile ("mov   %%edi, %0\n"
+				 :
+				 : "r"(returned)
+				 : "edi" , "eax", "memory");
+
+	return returned;
 }
