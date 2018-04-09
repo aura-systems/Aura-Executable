@@ -1,9 +1,9 @@
-#include "stdio.h"
+#include "lib/stdio.h"
 
 asm (".code32\n"
      "call __main\n"
 	 "ret\n");
-	 
+
 	
 char *fgets(char *string)
 {
@@ -13,14 +13,14 @@ char *fgets(char *string)
 				 :
 				 : "r"(string)
 				 : "esi" , "eax", "memory");
-			
+
 	char *returned;
-	
+
 	asm volatile ("mov   %%edi, %0\n"
 				 :
 				 : "r"(returned)
 				 : "edi" , "eax", "memory");
-					
+
 	return returned;
 }
 
