@@ -11,9 +11,9 @@ int printf(const char *string, ...)
 				 "mov   %0, %%ecx\n"
 				 "mov   $0x1, %%ebx\n"
 				 "mov   $0x4, %%eax\n"
-				 "int   0x80\n"
+				 "int   0x48\n"
 				 "mov   $0x1, %%eax\n"
-				 "int   0x80\n"
+				 "int   0x48\n"
 				 :
 				 : "r"(string)
 				 : "edx", "ebx", "eax" , "ecx", "memory");
