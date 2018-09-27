@@ -1,9 +1,7 @@
 #include "lib/stdlib.h"
 
-int _main(void)
+int main(void)
 {
-	char *response = fgets("What is your name: ");
-	printf("Hello ");
-	printf(response);
+	printf("Hello world!");
 	return 0;
 }

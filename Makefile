@@ -4,12 +4,12 @@ CFILES	:=	$(wildcard $(SDIR)/*.c)
 CLIBFILES	:=	$(wildcard $(SDIR)/lib/*.c)
 CC		:=	gcc
 OBJCOPY	:=	objcopy
-LD = ld.exe
+LD = ld
 OBJS	:=	$(patsubst $(SDIR)/%.c, $(ODIR)/%.o, $(CFILES))
 LOBJS	:=	$(patsubst $(SDIR)/lib/%.c, $(ODIR)/%.o, $(CLIBFILES))
 
 CFLAGS = -std=gnu99 -Os -nostdlib -m32 -ffreestanding
-LDFLAGS =  -Ttext=0x0
+LDFLAGS =  -Ttext=0x0 -m elf_i386 --entry main 
 
 TARGET = $(shell basename $(CURDIR)).bin
 
