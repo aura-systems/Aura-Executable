@@ -2,7 +2,9 @@
 
 int printf(const char *string, ...)
 {
-	int len = strlen(string);
+	int len;
+	
+	len = strlen(string);
 	asm volatile (
 				"mov   %1, %%edx\n"
 				"mov   %0, %%ecx\n"
@@ -15,13 +17,15 @@ int printf(const char *string, ...)
 				: "r"(string)
 				: "edx", "ebx", "eax" , "ecx", "memory"
 				);
-	return 0;
+	return (0);
 }
 
-int strlen(const char *str)
+int strlen(char const *str)
 {
-    int retval;
-    for (retval = 0; *str != '\0'; str++)
-        retval++;
-    return retval;
+    int counter = 0;
+
+    while (str[counter] != 0) {
+        counter++;
+    }
+    return counter;
 }
