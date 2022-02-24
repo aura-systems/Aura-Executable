@@ -1,10 +1,9 @@
-#include "stdio.h"
+#include "Lib.h"
 
 int printf(const char *string, ...)
 {
-	int len;
-	
-	len = strlen(string);
+	int len = strlen(string);
+
 	asm volatile (
 				"mov   %1, %%edx\n"
 				"mov   %0, %%ecx\n"
