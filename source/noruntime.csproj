@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
     <NoStdLib>true</NoStdLib>
@@ -12,7 +13,7 @@
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 
     <IlcSystemModule>noruntime</IlcSystemModule>
-    <EntryPointSymbol>EfiMain</EntryPointSymbol>
+    <EntryPointSymbol>_main</EntryPointSymbol>
     <LinkerSubsystem>NATIVE</LinkerSubsystem>
   </PropertyGroup>
 

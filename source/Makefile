@@ -12,8 +12,8 @@ C_SOURCES = $(wildcard *.c)
 OS_SOURCES = $(wildcard *.cs)
 
 OS_DLL=bin/Debug/net6.0/noruntime.dll
-OS_OBJ=obj/Lib.o
-EXECUTABLE=bin/noruntime.bin
+OS_OBJ=obj/noruntime.o
+EXECUTABLE=bin/noruntime.exe
 
 _OBJ = $(C_SOURCES:.c=.o)
 OBJ = $(patsubst %,$(OBJ_DIR)/%,$(_OBJ))
@@ -23,11 +23,11 @@ build: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OS_OBJ) $(OBJ)
 	@echo Linking $(EXECUTABLE); \
-	ld --nmagic --output=$(EXECUTABLE) $(OBJ_DIR)/Lib.o
+	ld -m i386pe --nmagic --output=$(EXECUTABLE) $(OBJ_DIR)/Lib.o $(OS_OBJ)
 
 $(OS_OBJ): $(OS_DLL)
 	@echo Converting CIL to native code; \
-	$(ILC) --systemmodule noruntime --out $(OS_OBJ) $(OS_DLL)
+	$(ILC) --targetarch x86 --systemmodule noruntime --out $(OS_OBJ) $(OS_DLL)
 
 $(OBJ_DIR): $(OBJ_DIR)
 	@mkdir $(OBJ_DIR)

@@ -181,12 +181,12 @@ unsafe class Program
     [System.Runtime.RuntimeExport("_start")]
     static void Main()
     {
-        /*string hello = "Hello from a NativeAOT compiled PE!\n.NET Version=6";
+        string hello = "Hello from a NativeAOT compiled PE!\n.NET Version=6";
 
         fixed (char* pHello = hello)
         {
             printf(pHello);
-        }*/
+        }
 
         while (true) ;
     }
