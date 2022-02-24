@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 
 #region A couple very basic things
@@ -34,7 +34,7 @@ namespace System
     public abstract class Enum : ValueType { }
 
     public struct Nullable<T> where T : struct { }
-    
+
     public sealed class String { public readonly int Length; }
     public abstract class Array { }
     public abstract class Delegate { }
@@ -176,21 +176,20 @@ namespace Internal.Runtime.CompilerHelpers
 }
 #endregion
 
-unsafe class Program
-{
-    [System.Runtime.RuntimeExport("_start")]
-    static void Main()
-    {
-        string hello = "Hello from a NativeAOT compiled PE!\n.NET Version=6";
+#region NET Runtime
 
-        fixed (char* pHello = hello)
+public unsafe class Console
+{
+    [DllImport("*")]
+    static extern int printf(char* text);
+
+    public static void WriteLine(string str)
+    {
+        fixed (char* pHello = str)
         {
             printf(pHello);
         }
-
-        while (true) ;
     }
-
-    [DllImport("*")]
-    static extern int printf(char* text);
 }
+
+#endregion
