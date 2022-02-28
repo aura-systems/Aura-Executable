@@ -3,10 +3,19 @@
 int printf(const char *string, ...)
 {
 	asm volatile ("mov   $0x01, %%eax\n" //Print function
-				 "mov   %0, %%esi\n"     //mov string content to ESI
+				 "mov   %0, %%edi\n"     //mov string pointer to ESI
 				 "int   $0x48\n"         //interrupt 0x48 (Aura API)
 				 :
 				 : "r"(string)
-				 : "esi" , "eax", "memory");
-	return (0);
+				 : "edi", "eax", "memory");
+	return 1;
+}
+
+void clear()
+{
+	asm volatile ("mov   $0x02, %%eax\n" //Clear function
+				 "int   $0x48\n"         //interrupt 0x48 (Aura API)
+				 :
+				 :
+				 : "eax", "memory");
 }

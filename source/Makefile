@@ -4,7 +4,8 @@ ILC=/mnt/c/Users/valentinbreiz/.nuget/packages/runtime.win-x64.microsoft.dotnet.
 DOTNET = dotnet
 CC = gcc
 
-CFLAGS = -std=gnu99 -Os -nostdlib -m32 -ffreestanding
+CFLAGS = -std=gnu99 -Os -nostdlib -m32 -ffreestanding -fno-PIC
+LDFLAGS = -m i386pe --nmagic -no-PIE --entry Main
 
 OBJ_DIR=obj
 
@@ -23,7 +24,7 @@ build: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OS_OBJ) $(OBJ)
 	@echo Linking $(EXECUTABLE); \
-	ld -m i386pe --nmagic --output=$(EXECUTABLE) $(OBJ_DIR)/Lib.o $(OS_OBJ)
+	ld $(LDFLAGS) --output=$(EXECUTABLE) $(OBJ_DIR)/Lib.o $(OS_OBJ)
 
 $(OS_OBJ): $(OS_DLL)
 	@echo Converting CIL to native code; \

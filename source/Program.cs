@@ -1,10 +1,13 @@
-unsafe class Program
+namespace SampleProgram
 {
-    [System.Runtime.RuntimeExport("_start")]
-    static void Main()
+    public class Program
     {
-        Console.WriteLine("Hello from a NativeAOT compiled PE!\n.NET Version=6");
-
-        while (true) ;
+        [System.Runtime.RuntimeExport("Main")]
+        static void Main()
+        {
+            //Console.Clear();
+            Console.WriteLine("Hello from a Portable Executable!\n");
+            Console.WriteLine("Compiled using NativeAOT and .NET 6\n");
+        }
     }
 }

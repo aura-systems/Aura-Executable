@@ -13,7 +13,7 @@
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 
     <IlcSystemModule>noruntime</IlcSystemModule>
-    <EntryPointSymbol>_main</EntryPointSymbol>
+    <EntryPointSymbol>Main</EntryPointSymbol>
     <LinkerSubsystem>NATIVE</LinkerSubsystem>
   </PropertyGroup>
 
