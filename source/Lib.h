@@ -2,6 +2,7 @@
 #define __STDIO_H__
 
 int printf(const char *, ...);
-char *fgets(char *string);
+void clear();
+int strlen(char const *str);
 
 #endif
